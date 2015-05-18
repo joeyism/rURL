@@ -24,7 +24,7 @@ fn print_type_of<T>(_: &T) -> () {
 fn responseFcn(mut res: Response){
     let mut body = String::new();
     res.read_to_string(&mut body).unwrap();
-    println!("Response: {}",body);
+    println!("{}",body);
 }
 
 fn main(){
@@ -38,16 +38,16 @@ fn main(){
                 let mut res = client.get(url)
                     .header(Connection::close())
                     .send().unwrap();
-                assert_eq!(res.status, hyper::Ok);
                 responseFcn(res);
             },
-            //            "POST" =>{
-            //                let mut res = client.post(args[2])
-            //                    .body(args[3])
-            //                    .send().unwrap();
-            //                assert_eq!(res.status, hyper::Ok);
-            //                responseFcn(res);
-            //            },
+            "POST" =>{
+                let ref url = args[2];
+                let ref body = args[3];
+                let mut res = client.post(url)
+                    .body(body)
+                    .send().unwrap();
+                responseFcn(res);
+            },
             _ => println!("I don't know what this means"),
         }
     } else {
