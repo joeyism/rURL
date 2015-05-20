@@ -8,4 +8,4 @@ Writing cURL, but using Rust instead.
 
 ### POST
 
-    $ rurl get http://www.joeyism.com "whatever I want to post"    
+    $ rurl post http://www.joeyism.com "whatever I want to post"    
